@@ -62,7 +62,7 @@ class NaiveMockLLM(LLM):
                 return {"tool": "run_shell", "args": {"cmd": cmd}}
             except Exception:
                 pass
-        run = re.search(r"(?:run|execute):\s*([^\n>]+?)\s*(?:-->|\n|$)", text)
+        run = re.search(r"(?:run|execute):\s*([^\n>)]+?)\s*(?:-->|\)|\n|$)", text)
         if run:
             return {"tool": "run_shell", "args": {"cmd": run.group(1)}}
         mail = re.search(r"email .*? to ([\w.+-]+@[\w.-]+)", text)
